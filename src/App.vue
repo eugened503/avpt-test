@@ -1,14 +1,6 @@
 <template>
-  <div style="height: 100vh">
-    <yandex-map
-      ref="map"
-      style="width: 100%; height: 100%"
-      :zoom="15"
-      :coords="[59.132296, 37.84513]"
-      :controls="[]"
-    >
-    </yandex-map>
-  </div>
+  <yandex-map class="map" ref="map" :zoom="zoom" :coords="coords" :controls="controls">
+  </yandex-map>
 </template>
 
 <script>
@@ -24,7 +16,10 @@ export default {
     return {
       points: null,
       locoType: null,
-      locoNumber: null
+      locoNumber: null,
+      coords: [59.132296, 37.84513],
+      controls: [],
+      zoom: 15
     }
   },
 
@@ -67,7 +62,7 @@ export default {
     // cоздаём описанние локомотива
     const descriptionLoco = new ymaps.control.Button({
       data: {
-        content: `<div>тип: ${this.locoType} | номер: ${this.locoNumber}</div>`,
+        content: `тип: ${this.locoType} | номер: ${this.locoNumber}`,
         image: locomotive
       },
       options: {
@@ -137,12 +132,8 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.map {
+  height: 100vh;
+  padding: 20px;
 }
 </style>
